@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table-game</title>
+    <!-- css local -->
+    <link rel="stylesheet" href="style.css">
+    <!-- getador de mapas -->
+    <script src="src/generator_map.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Table Game</h1>
+    <form id="form" action="javascript:void(0)">
+        <label for="casas">Numero de colunas:</label><br>
+        <input onkeyup="verifica_numero()" type="number" name="casas" id="input_colunas"><br>
+        <label for="linhas">Numero de linhas:</label><br>
+        <input onkeyup="verifica_numero()" type="number" name="linhas" id="input_linhas"><br>
+
+        <button onclick="gerar()">gerar</button>
+    </form>
+    <table class="game" id="table">
+
+    </table>
+</body>
+
+</html>
+
+<templete>
+    <tr id='linha'>
+        
+    </tr>
+</templete>
