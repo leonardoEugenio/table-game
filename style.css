@@ -1,11 +1,39 @@
+
 body{
     margin: 0 auto;
-    width: 100%;
+    text-align: center;
+    width: 1200px;
 }
 table{
     margin: 0 auto;
-    width: 80%;
+    width: 1200px;
+    border: 1px solid gainsboro;
 }
-th, td{
-    border: 1px solid black;
+th{
+    border: 1px solid gainsboro;
+    padding: 5px;
+    height: 5px;
+}
+form{
+    margin: 0 auto;
+    width: 40%;
+}
+input, label{
+    margin-left: 3.5%;
+    width: 150px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+button{
+    margin-left: 3.5%;
+    width: 32%;
+    background-color: #B0E8B2;
+}
+#mensagem{
+    background-color: red;
+    color: lime;
+}
+.player{
+    color: blue;
+    background-color: black;
 }
