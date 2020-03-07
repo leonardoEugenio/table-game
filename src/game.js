@@ -1,43 +1,109 @@
 document.addEventListener("keydown", keypush)
 var posicao = {
-    ['x'] : '0',
-    ['y'] : '0',
+    ['x']: '0',
+    ['y']: '0',
 };
 var andar_pra = '';
-var estava    = '';
+var estava = '';
 function move() {
     estava = andar_pra;
     // converte a posiçao em uma informção que mostra a localização do player
-    andar_pra = posicao.y +'-'+ posicao.x
+    if (posicao.y > total_coluna || posicao.x > total_linha || (posicao.y || posicao.x) < 1) {
+        andar_pra = estava
+    }
+    andar_pra = posicao.y + '-' + posicao.x
     $(table).find('th#' + andar_pra + '').addClass("player");
-    $(table).find('th#' + estava + '').removeClass("player");
-    
+    $(table).find('th#' + estava + '').removeClass("pladdddddddyer");
+
 }
+
 function keypush() {
 
     var tecla_press = event.keyCode;
-    console.log(tecla_press);
     switch (tecla_press) {
-        case  65: //left
-            posicao.y --;
-            move();
+        case 65: //left
+            posicao.y--;
+            if (posicao.y <= 0) {
+                posicao.y = 1
+            } else {
+                move();
+            }
+
             break;
 
-        case  87: // up
-            posicao.x --;
-            move();
+        case 87: // up
+            posicao.x--;
+            if (posicao.x < 1) {
+                posicao.x = 1
+            } else {
+                move();
+            }
+
+
             break;
 
-        case  68 : // right
-            posicao.y ++;
-            move();
+        case 68: // right
+            posicao.y++;
+            if (posicao.y > total_coluna) {
+                posicao.y = total_coluna
+            } else {
+                move();
+            }
             break;
 
-        case  83: // down
-            posicao.x ++;
-            move();
+        case 83: // down
+            posicao.x++;
+            if (posicao.x > total_linha) {
+                posicao.x = total_linha
+            } else {
+                move();
+            }
             break;
-            
+
+
+        case 65: //left
+            posicao.y--;
+            if (posicao.y <= 0) {
+                posicao.y = 1
+            } else {
+                move();
+            }
+            break;
+
+        case 38: // up
+            posicao.x -- ;
+            if (posicao.x < 1) {
+                posicao.x = 1
+            } else {
+                move();
+            }
+            break;
+
+        case 39: // right
+            posicao.y++;
+            if (posicao.y > total_coluna) {
+                posicao.y = total_coluna
+            } else {
+                move();
+            }
+            break;
+
+        case 40: // down
+            posicao.x++;
+            if (posicao.x > total_linha) {
+                posicao.x = total_linha
+            } else {
+                move();
+            }
+            break;
+        case 37: //left
+            posicao.y--;
+            if (posicao.y <= 0) {
+                posicao.y = 1
+            } else {
+                move();
+            }
+            break;
         default:
 
             break;
