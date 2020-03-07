@@ -8,17 +8,18 @@ function verifica_numero() {
     if (total_coluna > 60) {
         mensagem += ' -/- O numero maximo de colunas é de 60'
     }
-    if (total_linha > 1200) {
-        mensagem +=  ' -/- O numero maximo de linhas é 1200';
+    if (total_linha > 40) {
+        mensagem +=  ' -/- O numero maximo de linhas é 40';
     }
     
 };
 function gerar() {
     posicao = {['x'] : '1', ['y']:'1'} 
+    verifica_numero();
     $('#table').empty();
     $('#mensagem').empty();
-        verifica_numero()
     if (mensagem == '') {
+        $('#form').empty();
         var construtor = '';
         var x = 0;
         var y = 0;
