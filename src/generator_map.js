@@ -1,27 +1,42 @@
 var total_coluna = 0;
 var total_linha = 0;
+var mensagem = ''
 
 function verifica_numero() {
     total_coluna = $('#input_colunas').val()
     total_linha = $('#input_linhas').val()
+    if (total_coluna > 60) {
+        mensagem += ' -/- O numero maximo de colunas é de 60'
+    }
+    if (total_linha > 1200) {
+        mensagem +=  ' -/- O numero maximo de linhas é 1200';
+    }
+    
 };
 function gerar() {
+    posicao = {['x'] : '1', ['y']:'1'} 
     $('#table').empty();
-    verifica_numero()
-    var construtor = '';
-    var x = 0;
-    var y = 0;
-    for (y = 0; y < total_linha;) {
-        y++
-        construtor += '<tr>'
-        if (total_coluna != 0) {
-            for (x = 0; x < total_coluna;) {
-                x++
-                construtor += '<th id=' + x + '-' + y + '>' + x + '</th>'
+    $('#mensagem').empty();
+        verifica_numero()
+    if (mensagem == '') {
+        var construtor = '';
+        var x = 0;
+        var y = 0;
+        for (y = 0; y < total_linha;) {
+            y++
+            construtor += '<tr>'
+            if (total_coluna != 0) {
+                for (x = 0; x < total_coluna;) {
+                    x++
+                    construtor += '<th id=' + x + '-' + y + '> </th>'
+                }
             }
+            construtor + '</tr>'
         }
-        construtor + '</tr>'
+        $('#table').append(construtor);
+        move();
+    }else{
+        $('#mensagem').append(mensagem);
+        mensagem = '';
     }
-    $('#table').append(construtor);
-    console.log(construtor);
 }
