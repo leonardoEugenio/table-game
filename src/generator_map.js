@@ -36,6 +36,7 @@ function gerar() {
         }
         $('#table').append(construtor);
         spawn_itens();
+        move();
     }else{
         $('#mensagem').append(mensagem);
         mensagem = '';
