@@ -35,7 +35,7 @@ function gerar() {
             construtor + '</tr>'
         }
         $('#table').append(construtor);
-        move();
+        spawn_itens();
     }else{
         $('#mensagem').append(mensagem);
         mensagem = '';

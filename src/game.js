@@ -8,13 +8,11 @@ var estava = '';
 function move() {
     estava = andar_pra;
     // converte a posiçao em uma informção que mostra a localização do player
-    if (posicao.y > total_coluna || posicao.x > total_linha || (posicao.y || posicao.x) < 1) {
-        andar_pra = estava
-    }
     andar_pra = posicao.y + '-' + posicao.x
     $(table).find('th#' + andar_pra + '').addClass("player");
-    $(table).find('th#' + estava + '').removeClass("pladdddddddyer");
-
+    $(table).find('th#' + estava + '').removeClass("player");
+    // pegar o item
+    getItem()
 }
 
 function keypush() {
