@@ -9,7 +9,7 @@ function move() {
     estava = andar_pra;
     // converte a posiçao em uma informção que mostra a localização do player
     andar_pra = posicao.y + '-' + posicao.x
-    $(table).find('th#' + andar_pra + '').addClass("player");s
+    $(table).find('th#' + andar_pra + '').addClass("player");
     $(table).find('th#' + estava + '').removeClass("player");
     // pegar o item
     getItem()
