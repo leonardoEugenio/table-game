@@ -26,55 +26,8 @@ function keypush() {
 
     switch (tecla_press) {
         case 32: //space
-            pawer()
-            function pawer() {
-                var save_fire = 0
-                if (player.itens.length != 0) {
-                    for (let i = 0; i < player.itens.range; i++) {
-
-                        if (save_fire == 0) {
-                            save_fire = andar_pra;
-                        }
-                        // codenada do tiro
-                        var coder_fire = save_fire
-                        //trasnforma em um arrey
-                        coder_fire = coder_fire.split("-")
-                        
-
-                        switch (fire) {
-                            case 'y--':
-                                coder_fire[0]--
-                                break;
-
-                            case 'y++':
-                                coder_fire[0]++
-                                break;
-
-                            case 'x--':
-                                coder_fire[1]--
-                                break;
-
-                            case 'x++':
-                                coder_fire[1]++
-                                break;
-
-                            default:
-                                
-                                break;
-                        }
-
-                        coder_fire = coder_fire[0] + '-' + coder_fire[1]
-                        save_fire = coder_fire;
-                        console.log(save_fire)
-
-                        $(table).find('th#' + coder_fire + '').addClass("fire");
-                        setTimeout(function () {
-                            $(table).find('th#' + coder_fire + '').removeClass("fire"); 
-                        }, 200); 
-
-                    }
-                }
-            }
+            pawer();
+                
             break;
         case 65: //left
             posicao.y--;
@@ -171,5 +124,62 @@ function keypush() {
         default:
 
             break;
+    }
+}
+
+function pawer() {
+
+    var save_fire = 0
+    if (player.itens.length != 0) {
+        for (let i = 0; i < player.itens.range; i++) {
+            
+
+            setInterval(function () {
+                $(table).find('th#' + save_fire + '').removeClass("fire");
+            }, 100);
+
+            if (save_fire == 0) {
+                save_fire = andar_pra;
+            }
+
+            // codenada do tiro
+            var coder_fire = save_fire
+            //trasnforma em um arrey
+            coder_fire = coder_fire.split("-")
+
+
+            switch (fire) {
+                case 'y--':
+                    coder_fire[0]--
+                    break;
+
+                case 'y++':
+                    coder_fire[0]++
+                    break;
+
+                case 'x--':
+                    coder_fire[1]--
+                    break;
+
+                case 'x++':
+                    coder_fire[1]++
+                    break;
+
+                default:
+
+                    break;
+            }
+
+
+            tiro();
+        }
+        function tiro() {
+            coder_fire = coder_fire[0] + '-' + coder_fire[1]
+            save_fire = coder_fire;
+
+            $(table).find('th#' + coder_fire + '').addClass("fire");
+
+
+        }
     }
 }

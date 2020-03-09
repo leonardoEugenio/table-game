@@ -12,7 +12,7 @@ weapons = {
         },
         'range': 1,
         // quantidade do item
-        'qtd': 2,
+        'qtd': 5,
         'nome': 'Knife',
     }
 };
