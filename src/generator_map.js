@@ -5,17 +5,16 @@ var mensagem = ''
 function verifica_numero() {
     total_coluna = $('#input_colunas').val()
     total_linha = $('#input_linhas').val()
-    if (total_coluna > 60) {
-        mensagem += ' -/- O numero maximo de colunas é de 60'
-    }
-    if (total_linha > 40) {
-        mensagem +=  ' -/- O numero maximo de linhas é 40';
-    }
+     if (total_coluna > 70) {
+         mensagem += ' -/- O numero maximo de colunas é de 70'
+     }
+     if (total_linha > 40) {
+         mensagem +=  ' -/- O numero maximo de linhas é 40';
+     }
     
 };
 function gerar() {
-    posicao = {['x'] : '1', ['y']:'1'} 
-    verifica_numero();
+    // verifica_numero();
     $('#table').empty();
     $('#mensagem').empty();
     if (mensagem == '') {
@@ -29,13 +28,14 @@ function gerar() {
             if (total_coluna != 0) {
                 for (x = 0; x < total_coluna;) {
                     x++
-                    construtor += '<th id=' + x + '-' + y + '> </th>'
+                    construtor += '<th id=' + y + '-' + x + '> </th>'
                 }
             }
             construtor + '</tr>'
         }
         $('#table').append(construtor);
-        spawn_itens();
+        estava = '';
+        item();
         move();
     }else{
         $('#mensagem').append(mensagem);

@@ -6,12 +6,13 @@ body{
 }
 table{
     margin: 0 auto;
-    width: 1200px;
+    max-width: 1200px;
     border: 1px solid gainsboro;
 }
 th{
     border: 1px solid gainsboro;
     padding: 5px;
+    max-width: 2px;
 }
 form{
     margin: 0 auto;

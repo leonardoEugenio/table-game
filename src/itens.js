@@ -10,7 +10,7 @@ weapons = {
             'y': 0,
             'x': 0
         },
-        'range': 1,
+        'range': 4,
         // quantidade do item
         'qtd': 5,
         'nome': 'Knife',
@@ -27,28 +27,41 @@ function spawn_itens() {
 
         locIten['loc'] += '/' + item_location;
 
-        $(table).find('th#' + item_location + '').addClass("Knife");
-
         locIten.info[i] = {
             'nome': weapons.item.nome,
             'range': weapons.item.range,
         }
 
-
     }
-    locIten.loc = locIten.loc.split("/")
+    locIten.loc = locIten.loc.split("/");
 }
 function getItem() {
-    for ( i = 1; i < locIten.loc.length; i++) {
+    for (i = 1; i < locIten.loc.length; i++) {
 
-        if (locIten.loc[i] == andar_pra) {
+        if (locIten.loc[i] == andar_pra && locIten.loc[i] != null) {
+
             $(table).find('th#' + andar_pra + '').removeClass("Knife");
-            
+
             player.itens = {
-                'nome': locIten.info[i-1]['nome'],
-                'range': locIten.info[i-1]['range']
+                'nome': locIten.info[i - 1]['nome'],
+                'range': locIten.info[i - 1]['range']
             }
+            locIten.loc[i] = null;
         }
 
     }
+}
+
+function item() {
+    if (locIten.loc.length == null || locIten.loc.indexOf(null) == 1) {
+        spawn_itens()
+    }
+
+    for (i = 1; i < locIten.loc.length; i++) {
+
+        $(table).find('th#' + locIten.loc[i] + '').addClass("Knife");
+
+
+    }
+
 }

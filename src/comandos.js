@@ -1,185 +1,146 @@
-document.addEventListener("keydown", keypush)
-// posiçao do player
-var posicao = {
-    ['x']: '0',
-    ['y']: '0',
-};
-// direção para onde vai o tiro
-var fire = 'x++'
+document.addEventListener("keydown", keypush);
+
 // dirçao onde o player esta indo
-var andar_pra = '';
+var andar_pra = "";
 // direçao one o player estava 
 var estava = '';
-function move() {
-    estava = andar_pra;
-    // converte a posiçao em uma informção que mostra a localização do player
-    andar_pra = posicao.y + '-' + posicao.x
-    $(table).find('th#' + andar_pra + '').addClass("player");
-    $(table).find('th#' + estava + '').removeClass("player");
-    // pegar o item
-    getItem()
-}
 
 function keypush() {
 
     var tecla_press = event.keyCode;
 
-    switch (tecla_press) {
-        case 32: //space
-            pawer();
-                
-            break;
-        case 65: //left
-            posicao.y--;
-            fire = 'y--'
-            if (posicao.y <= 0) {
-                posicao.y = 1
-            } else {
-                move();
+    // direção para onde vai o tiro
+    var fire_direcao = {
+        'cod': {
+            'x': player.posicao.x,
+            'y': player.posicao.y,
+            'toback': '',
+        },
+        'move': '',
+    };
+
+    const commands = {
+
+
+
+        32(posicao) {//fire / space
+            var save_fire = ''
+            const fire_array = {
+                up() {
+
+                    fire_direcao.move = -1;
+                    fire_direcao.l = 'y'
+                },
+                left() {
+
+                    fire_direcao.move = -1;
+                    fire_direcao.l = 'x'
+                },
+                down() {
+
+                    fire_direcao.move = 1;
+                    fire_direcao.l = 'y'
+                },
+                right() {
+
+                    fire_direcao.move = 1
+                    fire_direcao.l = 'x'
+                }
+
             }
-
-            break;
-
-        case 87: // up
-            posicao.x--;
-            fire = 'x--'
-            if (posicao.x < 1) {
-                posicao.x = 1
-            } else {
-                move();
-            }
+            var make_fire = fire_array[fire];
+            make_fire();
+            do_fire(fire_direcao);
+        },
 
 
-            break;
+        87(posicao) {//up
+            fire = 'up'
+            player.posicao.y--
+            move()
 
-        case 68: // right
-            posicao.y++;
-            fire = 'y++';
-            if (posicao.y > total_coluna) {
-                posicao.y = total_coluna
-            } else {
-                move();
-            }
-            break;
+        },
 
-        case 83: // down
-            posicao.x++;
-            fire = 'x++'
-            if (posicao.x > total_linha) {
-                posicao.x = total_linha
-            } else {
-                move();
-            }
-            break;
+        38(posicao) {//up
+            fire = 'up'
+            player.posicao.y--
+            move()
+        },
 
+        68(posicao) {//right
+            fire = 'right'
+            player.posicao.x++
+            move()
+        },
 
-        case 65: //left
-            posicao.y--;
-            fire = 'y--';
-            if (posicao.y <= 0) {
-                posicao.y = 1
-            } else {
-                move();
-            }
-            break;
+        39(posicao) {//right
+            fire = 'right'
+            player.posicao.x++
+            move()
+        },
 
-        case 38: // up
-            posicao.x--;
-            fire = 'x--';
-            if (posicao.x < 1) {
-                posicao.x = 1
-            } else {
-                move();
-            }
-            break;
+        65(posicao) {//left
+            fire = 'left'
+            player.posicao.x--
+            move()
+        },
 
-        case 39: // right
-            posicao.y++;
-            fire = 'y++';
-            if (posicao.y > total_coluna) {
-                posicao.y = total_coluna
-            } else {
-                move();
-            }
-            break;
+        37(posicao) {//left
+            fire = 'left'
+            player.posicao.x--
+            move()
+        },
 
-        case 40: // down
-            posicao.x++;
-            fire = 'x++';
-            if (posicao.x > total_linha) {
-                posicao.x = total_linha
-            } else {
-                move();
-            }
-            break;
-        case 37: //left
-            posicao.y--;
-            fire = 'y--'
-            if (posicao.y <= 0) {
-                posicao.y = 1
-            } else {
-                move();
-            }
-            break;
-        default:
-
-            break;
+        83(posicao) {//down
+            fire = 'down'
+            player.posicao.y++
+            move()
+        },
+        40(posicao) {//down
+            fire = 'down'
+            player.posicao.y++
+            move()
+        },
     }
+    direcao = commands[tecla_press];
+    if (direcao) {
+        direcao(player);
+    };
 }
 
-function pawer() {
-
-    var save_fire = 0
-    if (player.itens.length != 0) {
-        for (let i = 0; i < player.itens.range; i++) {
-            
-
-            setInterval(function () {
-                $(table).find('th#' + save_fire + '').removeClass("fire");
-            }, 100);
-
-            if (save_fire == 0) {
-                save_fire = andar_pra;
-            }
-
-            // codenada do tiro
-            var coder_fire = save_fire
-            //trasnforma em um arrey
-            coder_fire = coder_fire.split("-")
-
-
-            switch (fire) {
-                case 'y--':
-                    coder_fire[0]--
-                    break;
-
-                case 'y++':
-                    coder_fire[0]++
-                    break;
-
-                case 'x--':
-                    coder_fire[1]--
-                    break;
-
-                case 'x++':
-                    coder_fire[1]++
-                    break;
-
-                default:
-
-                    break;
-            }
-
-
-            tiro();
-        }
-        function tiro() {
-            coder_fire = coder_fire[0] + '-' + coder_fire[1]
-            save_fire = coder_fire;
-
-            $(table).find('th#' + coder_fire + '').addClass("fire");
-
-
-        }
+function move() {
+    // converte a posiçao em uma informção que mostra a localização do player
+    andar_pra = player.posicao.y + '-' + player.posicao.x;
+    $(table).find('th#' + andar_pra + '').addClass("player");
+    if (estava != "") {
+        $(table).find('th#' + estava + '').removeClass("player");
     }
+    estava = andar_pra;
+    // pegar o item
+    getItem()
+
+}
+
+function do_fire(fire_direcao) {
+
+
+    for (i = 0; i < player.itens.range; i++) {
+
+
+        fire_direcao.cod[fire_direcao.l] += fire_direcao.move;
+
+
+        fire_direcao.cod.id = fire_direcao.cod.y + '-' + fire_direcao.cod.x;
+
+        $(table).find('th#' + fire_direcao.cod.id + '').addClass("fire");
+
+        var save = {};
+        save = fire_direcao.cod.id;
+        setTimeout(function () {
+            requestAnimationFrame(gerar);
+        }, 300);
+
+
+    }
+
 }
