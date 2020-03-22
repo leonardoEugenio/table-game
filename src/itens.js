@@ -38,9 +38,9 @@ function spawn_itens() {
 function getItem() {
     for (i = 1; i < locIten.loc.length; i++) {
 
-        if (locIten.loc[i] == andar_pra && locIten.loc[i] != null) {
+        if (locIten.loc[i] == player.posicao.y + '-' + player.posicao.x && locIten.loc[i] != null) {
 
-            $(table).find('th#' + andar_pra + '').removeClass("Knife");
+            $(table).find('th#' + player.posicao.y + '-' + player.posicao.x + '').removeClass("Knife");
 
             player.itens = {
                 'nome': locIten.info[i - 1]['nome'],

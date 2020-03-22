@@ -1,9 +1,7 @@
 document.addEventListener("keydown", keypush);
 
-// dirçao onde o player esta indo
-var andar_pra = "";
 // direçao one o player estava 
-var estava = '';
+var estava = {};
 
 function keypush() {
 
@@ -20,6 +18,8 @@ function keypush() {
     };
 
     const commands = {
+
+
 
 
 
@@ -109,13 +109,23 @@ function keypush() {
 }
 
 function move() {
-    // converte a posiçao em uma informção que mostra a localização do player
-    andar_pra = player.posicao.y + '-' + player.posicao.x;
-    $(table).find('th#' + andar_pra + '').addClass("player");
-    if (estava != "") {
-        $(table).find('th#' + estava + '').removeClass("player");
+    // colizao
+    if (player.posicao.y <= 0 || player.posicao.x <= 0 || player.posicao.y > total_linha || player.posicao.x > total_coluna) {
+        player.posicao.x = estava.x;
+        player.posicao.y = estava.y;
+        estava    = {};
     }
-    estava = andar_pra;
+
+    $(table).find('th#' + player.posicao.y + '-' + player.posicao.x + '').addClass("player");
+
+    if (estava.length != 0) {
+        $(table).find('th#' + estava.y + '-' + estava.x + '').removeClass("player");
+    }
+
+    estava = {
+        'y': player.posicao.y,
+        'x': player.posicao.x
+    };
     // pegar o item
     getItem()
 
@@ -135,7 +145,9 @@ function do_fire(fire_direcao) {
         $(table).find('th#' + fire_direcao.cod.id + '').addClass("fire");
 
         var save = {};
+         
         save = fire_direcao.cod.id;
+
         setTimeout(function () {
             requestAnimationFrame(gerar);
         }, 300);

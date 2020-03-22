@@ -34,7 +34,7 @@ function gerar() {
             construtor + '</tr>'
         }
         $('#table').append(construtor);
-        estava = '';
+        estava = {};
         item();
         move();
     }else{
