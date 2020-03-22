@@ -15,6 +15,7 @@ function keypush() {
             'toback': '',
         },
         'move': '',
+        'save': ''
     };
 
     const commands = {
@@ -110,7 +111,7 @@ function keypush() {
 
 function move() {
     // colizao
-    if (player.posicao.y <= 0 || player.posicao.x <= 0 || player.posicao.y > total_linha || player.posicao.x > total_coluna) {
+    if (player.posicao.y <= 0 || player.posicao.x <= 0 || player.posicao.y > total_linha || player.posicao.x > total_coluna || player.move == 'none') {
         player.posicao.x = estava.x;
         player.posicao.y = estava.y;
         estava    = {};
@@ -132,7 +133,7 @@ function move() {
 }
 
 function do_fire(fire_direcao) {
-
+    var save = {};
 
     for (i = 0; i < player.itens.range; i++) {
 
@@ -143,16 +144,15 @@ function do_fire(fire_direcao) {
         fire_direcao.cod.id = fire_direcao.cod.y + '-' + fire_direcao.cod.x;
 
         $(table).find('th#' + fire_direcao.cod.id + '').addClass("fire");
-
-        var save = {};
          
-        save = fire_direcao.cod.id;
-
+        save[i] = fire_direcao.cod.id;
+        player.move = 'none';
         setTimeout(function () {
+            player.move = 'ative';
             requestAnimationFrame(gerar);
         }, 300);
 
 
     }
-
+    fire_direcao.save = save;
 }
