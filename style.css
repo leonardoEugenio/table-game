@@ -1,44 +1,89 @@
+h1 {
+    color: rgb(200, 202, 200);
+}
 
-body{
+p,
+label {
+    color: rgb(131, 131, 204);
+}
+
+body {
+    background-color: black;
     margin: 0 auto;
     text-align: center;
     width: 1200px;
 }
-table{
+
+body table {
+    align-items: center;
     margin: 0 auto;
     max-width: 1200px;
-    border: 1px solid gainsboro;
+    border: 1px solid rgb(131, 131, 204);
 }
-th{
-    border: 1px solid gainsboro;
+
+#table th {
+    border: 1px solid rgb(131, 131, 204);
     padding: 5px;
     max-width: 2px;
 }
-form{
+
+form {
     margin: 0 auto;
     width: 40%;
 }
-input, label{
+
+input,
+label {
     margin-left: 3.5%;
     width: 150px;
     border-radius: 4px;
     margin-bottom: 10px;
 }
-button{
+
+button {
     margin-left: 3.5%;
     width: 32%;
-    background-color: #B0E8B2;
+    background-color: rgb(131, 131, 204);
+    border: none;
 }
-#mensagem{
+
+button:hover {
+    background-color: rgb(112, 112, 207);
+    border: white;
+}
+
+#info {
+    position: absolute;
+    width: 5%;
+    max-width: 30%;
+    left: 0;
+    top: 13%;
+}
+
+#info th {
+    color: rgb(200, 202, 200);
+    border: 1px solid rgb(131, 131, 204);
+}
+
+#mensagem {
     background-color: red;
     color: lime;
 }
-.player{
-    background-color: black;
+
+.player {
+    background-color: rgb(131, 241, 131);
+    padding: 10dasdwdwadwwdpx;
+    max-width: 5px;
 }
+
 .Knife {
     background-color: silver;
+    padding: 10px;
+    max-width: 5px;
 }
-.fire{
-    background-color: red;
+
+.fire {
+    background-color: rgb(238, 103, 103);
+    padding: 10px;
+    max-width: 5px;
 }
