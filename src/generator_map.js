@@ -5,13 +5,13 @@ var mensagem = ''
 function verifica_numero() {
     total_coluna = $('#input_colunas').val()
     total_linha = $('#input_linhas').val()
-     if (total_coluna > 70) {
-         mensagem += ' -/- O numero maximo de colunas é de 70'
-     }
-     if (total_linha > 40) {
-         mensagem +=  ' -/- O numero maximo de linhas é 40';
-     }
-    
+    if (total_coluna > 70) {
+        mensagem += ' -/- O numero maximo de colunas é de 70'
+    }
+    if (total_linha > 40) {
+        mensagem += ' -/- O numero maximo de linhas é 40';
+    }
+
 };
 function gerar() {
     // verifica_numero();
@@ -34,10 +34,9 @@ function gerar() {
             construtor + '</tr>'
         }
         $('#table').append(construtor);
-        estava = {};
-        item();
-        move();
-    }else{
+        status();
+        requestAnimationFrame(gerar);
+    } else {
         $('#mensagem').append(mensagem);
         mensagem = '';
     }
